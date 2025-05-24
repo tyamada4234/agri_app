@@ -16,3 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Http\Controllers\User\EventController;
+
+Route::controller(EventController::class)->prefix('user')->group(function () {
+    Route::get('event/create', 'add')->middleware('auth');
+    
+});
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
