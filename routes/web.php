@@ -19,8 +19,9 @@ Route::get('/', function () {
 
 use App\Http\Controllers\User\EventController;
 
-Route::controller(EventController::class)->prefix('user')->group(function () {
-    Route::get('event/create', 'add')->middleware('auth');
+Route::controller(EventController::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
+    Route::get('event/create', 'add')->name('event.add');
+    Route::post('event/create', 'create')->name('event.create');
     
 });
 
