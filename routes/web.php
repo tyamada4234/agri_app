@@ -22,7 +22,17 @@ use App\Http\Controllers\User\EventController;
 Route::controller(EventController::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
     Route::get('event/create', 'add')->name('event.add');
     Route::post('event/create', 'create')->name('event.create');
-    
+    Route::get('event', 'index')->name('event.index');
+    Route::get('event/edit', 'edit')->name('event.edit');
+    Route::post('event/edit', 'update')->name('event.update');
+    Route::get('event/delete', 'delete')->name('event.delete');
+});
+
+use App\Http\Controllers\User\GenreContoller;
+
+Route::controller(GenreContoller::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
+    Route::get('genre/create', 'add')->name('genre.add');
+    Route::post('genre/create', 'create')->name('genre.create');
 });
 
 
