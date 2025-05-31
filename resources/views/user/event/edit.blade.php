@@ -15,11 +15,22 @@
                             @endforeach
                         </ul>
                     @endif
-
+                    <div class="form-group row">
+                        <label class="col-md-2">ユーザID</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="user_id" value="{{ auth()->id() }}">
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="title">タイトル</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ $event_form->title }}" >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">日時</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="launch_date" value="{{ $event_form->launch_date }}">
                         </div>
                     </div>
                     <div class="form-group row">
