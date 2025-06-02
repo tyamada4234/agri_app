@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
 use App\Models\Genre;
 
@@ -36,12 +36,13 @@ class EventController extends Controller
         unset($form['image']);
 
         $event->fill($form);
+        $event->user_id=Auth::id();
         $event->save();
 
         $genre_id = $request['genre_id'];
         $event->genres()->sync($genre_id, false);
 
-        return redirect('user/event/create');
+        return redirect('user/event');
 
 
     }

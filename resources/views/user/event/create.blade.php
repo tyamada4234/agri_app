@@ -20,12 +20,6 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2">ユーザID</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="user_id" value="{{ auth()->id() }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-md-2">タイトル</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ old('title') }}">
@@ -45,7 +39,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">日時</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="launch_date" value="{{ old('launch_date') }}">
+                            <input type="date" class="form-control" name="launch_date" value="{{ old('launch_date') }}">
                         </div>
                     </div>
                     <div class="form-group row">
