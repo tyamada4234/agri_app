@@ -20,9 +20,32 @@
                         </ul>
                     @endif
                     <div class="form-group row">
+                        <label class="col-md-2">ユーザID</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="user_id" value="{{ auth()->id() }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-md-2">タイトル</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">ジャンル</label>
+                        <div class="col-md-10" >
+                            <select name="genre_id" class="form-control">
+                                
+                                @foreach($genres as $genre)
+                                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">日時</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="launch_date" value="{{ old('launch_date') }}">
                         </div>
                     </div>
                     <div class="form-group row">

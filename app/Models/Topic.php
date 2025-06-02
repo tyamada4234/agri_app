@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+
+    use HasFactory;
+    
     protected $guarded = array('id)');
 
     public static $rules = array(
@@ -14,5 +17,5 @@ class Topic extends Model
         'body' => 'required',
 
     );
-    use HasFactory;
+    
 }

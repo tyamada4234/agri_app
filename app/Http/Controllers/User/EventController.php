@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Event;
+use App\Models\Genre;
 
 class EventController extends Controller
 {
     public function add()
     {
-        return view('user.event.create');
+        $genres = Genre::all();
+        
+        
+        return view('user.event.create', ['genres' => $genres]);
     }
 
     public function create(Request $request)
@@ -19,7 +23,7 @@ class EventController extends Controller
         $this->validate($request, Event::$rules);
 
         $event = new Event;
-        $form = $request->all();
+        $form = $request->except(['genre_id']);
 
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -33,6 +37,9 @@ class EventController extends Controller
 
         $event->fill($form);
         $event->save();
+
+        $genre_id = $request['genre_id'];
+        $event->genres()->sync($genre_id, false);
 
         return redirect('user/event/create');
 

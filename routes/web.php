@@ -33,6 +33,10 @@ use App\Http\Controllers\User\GenreContoller;
 Route::controller(GenreContoller::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
     Route::get('genre/create', 'add')->name('genre.add');
     Route::post('genre/create', 'create')->name('genre.create');
+    Route::get('genre', 'index')->name('genre.index');
+    Route::get('<genre/edit', 'edit')->name('genre.edit');
+    Route::post('genre/edit', 'update')->name('genre.update');
+    Route::get('genre/delete', 'delete')->name('genre.delete');
 });
 
 
