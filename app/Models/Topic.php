@@ -17,5 +17,9 @@ class Topic extends Model
         'body' => 'required',
 
     );
+
+    public function genres(){
+        return $this->belongsToMany('App\Models\Genre')->withTimestamps();
+    }
     
 }
