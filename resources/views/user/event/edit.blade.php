@@ -15,22 +15,29 @@
                             @endforeach
                         </ul>
                     @endif
-                    <div class="form-group row">
-                        <label class="col-md-2">ユーザID</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="user_id" value="{{ auth()->id() }}">
-                        </div>
-                    </div>
+                    
                     <div class="form-group row">
                         <label class="col-md-2" for="title">タイトル</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ $event_form->title }}" >
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-2" for="genre">ジャンル</label>
+                        <div class="col-md-10" >
+                            <select name="genre_id" class="form-control">
+                                <option value="">{{ $genre_name }}</option>
+                                @foreach($genres as $genre)
+                                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-md-2">日時</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="launch_date" value="{{ $event_form->launch_date }}">
+                            <input type="date" class="form-control" name="launch_date" value="{{ $event_form->launch_date }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -57,7 +64,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group-row">
+                    <div class="form-group row">
                         <div class="col-md-10">
                             <input type="hidden" name="id" value="{{ $event_form->id }}">
                             @csrf
