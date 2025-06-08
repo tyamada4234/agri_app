@@ -51,11 +51,11 @@ class EventController extends Controller
     {
         $cond_title = $request->cond_title;
         if ($cond_title != null) {
-            $posts = Event::where('title', $cond_title)->get();
+            $events = Event::where('title', $cond_title)->get();
         } else {
-            $posts = Event::all();
+            $events = Event::all();
         }
-        return view('user.event.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+        return view('user.event.index', ['events' => $events, 'cond_title' => $cond_title]);
     }
 
     public function edit(Request $request)
@@ -65,7 +65,15 @@ class EventController extends Controller
             abort(404);
         }
 
-    return view('user.event.edit', ['event_form' => $event]);
+        $genres = Genre::all();
+        //grenresメソッドでリレーション、ジャンル名を配列で取得
+        $genre_name_array = $event->genres()->pluck('name')->toArray();
+        //取得した配列の最初の要素を代入
+        $genre_name = $genre_name_array[0];
+
+
+
+    return view('user.event.edit', ['event_form' => $event, 'genres' => $genres, 'genre_name' => $genre_name]);
     }
 
     public function update(Request $request)
@@ -73,7 +81,8 @@ class EventController extends Controller
         $this->validate($request, Event::$rules);
         $event = Event::find($request->id);
 
-        $event_form = $request->all();
+        $event_form = $request->except(['genre_id']);
+
 
         if ($request->remove == 'true') {
             $event_form['image_path'] = null;
@@ -88,7 +97,12 @@ class EventController extends Controller
         unset($event_form['remove']);
         unset($event_form['_token']);
 
-        $event->fill($event_form)->save();
+        $event->fill($event_form);
+        $event->user_id = Auth::id();
+        $event->save();
+
+        $genre_id = $request['genre_id'];
+        $event->genres()->sync($genre_id, false);
 
         return redirect('user/event');
     }
@@ -96,6 +110,10 @@ class EventController extends Controller
     public function delete(Request $request)
     {
         $event = Event::find($request->id);
+
+        $genre_id = $request['genre_id'];
+        //紐づけ解除
+        $event->genres()->detach($genre_id);
 
         $event->delete();
 

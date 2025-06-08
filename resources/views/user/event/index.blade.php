@@ -37,7 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($posts as $event)
+                            @foreach($events as $event)
                                 <tr>
                                     <th>{{ $event->id }}</th>
                                     <td>{{ Str::limit($event->title, 100) }}</td>
