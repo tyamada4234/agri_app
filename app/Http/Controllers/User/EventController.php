@@ -40,7 +40,7 @@ class EventController extends Controller
         $event->save();
 
         $genre_id = $request['genre_id'];
-        $event->genres()->sync($genre_id, false);
+        $event->genres()->sync($genre_id);
 
         return redirect('user/event');
 
@@ -66,14 +66,12 @@ class EventController extends Controller
         }
 
         $genres = Genre::all();
-        //grenresメソッドでリレーション、ジャンル名を配列で取得
-        $genre_name_array = $event->genres()->pluck('name')->toArray();
-        //取得した配列の最初の要素を代入
-        $genre_name = $genre_name_array[0];
+        //$genres = 
+        
 
 
 
-    return view('user.event.edit', ['event_form' => $event, 'genres' => $genres, 'genre_name' => $genre_name]);
+    return view('user.event.edit', ['event_form' => $event, 'genres' => $genres]);
     }
 
     public function update(Request $request)
@@ -102,7 +100,7 @@ class EventController extends Controller
         $event->save();
 
         $genre_id = $request['genre_id'];
-        $event->genres()->sync($genre_id, false);
+        $event->genres()->sync($genre_id);
 
         return redirect('user/event');
     }

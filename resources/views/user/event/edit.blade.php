@@ -26,10 +26,10 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="genre">ジャンル</label>
                         <div class="col-md-10" >
-                            <select name="genre_id" class="form-control">
-                                <option value="">{{ $genre_name }}</option>
+                            <select name="genre_id[]" class="form-control" multiple>
+                                
                                 @foreach($genres as $genre)
-                                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                <option value="{{ $genre->id }}" {{ $event_form->genres->contains('id', $genre->id) ? 'selected' : '' }}>{{ $genre->name }}</option>
                                 @endforeach
                             </select>
                         </div>

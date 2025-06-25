@@ -28,7 +28,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">ジャンル</label>
                         <div class="col-md-10" >
-                            <select name="genre_id" class="form-control">
+                            <select name="genre_id[]" class="form-control" multiple>
                                 <option value="">ジャンルを選択してください。</option>
                                 @foreach($genres as $genre)
                                 <option value="{{ $genre->id }}">{{ $genre->name }}</option>
