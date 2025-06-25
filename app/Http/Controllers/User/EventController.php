@@ -23,7 +23,7 @@ class EventController extends Controller
         $this->validate($request, Event::$rules);
 
         $event = new Event;
-        $form = $request->except(['genre_id']);
+        $form = $request->except(['genre_ids']);
 
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -39,8 +39,8 @@ class EventController extends Controller
         $event->user_id=Auth::id();
         $event->save();
 
-        $genre_id = $request['genre_id'];
-        $event->genres()->sync($genre_id);
+        $genre_ids = $request['genre_ids'];
+        $event->genres()->sync($genre_ids);
 
         return redirect('user/event');
 
@@ -79,7 +79,7 @@ class EventController extends Controller
         $this->validate($request, Event::$rules);
         $event = Event::find($request->id);
 
-        $event_form = $request->except(['genre_id']);
+        $event_form = $request->except(['genre_ids']);
 
 
         if ($request->remove == 'true') {
@@ -99,8 +99,8 @@ class EventController extends Controller
         $event->user_id = Auth::id();
         $event->save();
 
-        $genre_id = $request['genre_id'];
-        $event->genres()->sync($genre_id);
+        $genre_ids = $request['genre_ids'];
+        $event->genres()->sync($genre_ids);
 
         return redirect('user/event');
     }
