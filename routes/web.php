@@ -34,12 +34,22 @@ Route::controller(GenreContoller::class)->prefix('user')->name('user.')->middlew
     Route::get('genre/create', 'add')->name('genre.add');
     Route::post('genre/create', 'create')->name('genre.create');
     Route::get('genre', 'index')->name('genre.index');
-    Route::get('<genre/edit', 'edit')->name('genre.edit');
+    Route::get('genre/edit', 'edit')->name('genre.edit');
     Route::post('genre/edit', 'update')->name('genre.update');
     Route::get('genre/delete', 'delete')->name('genre.delete');
 });
 
+use App\Http\Controllers\User\TopicController;
 
+Route::controller(TopicController::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
+    Route::get('topic/create', 'add')->name('topic.add');
+    Route::post('topic/create', 'create')->name('topic.create');
+    Route::get('topic', 'index')->name('topic.index');
+    Route::get('topic/edit', 'edit')->name('topic.edit');
+    Route::post('topic/edit', 'update')->name('topic.update');
+    Route::get('topic/delete', 'delete')->name('topic.delete');
+
+});
 
 Auth::routes();
 
