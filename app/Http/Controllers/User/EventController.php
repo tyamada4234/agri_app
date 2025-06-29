@@ -66,10 +66,6 @@ class EventController extends Controller
         }
 
         $genres = Genre::all();
-        //$genres = 
-        
-
-
 
     return view('user.event.edit', ['event_form' => $event, 'genres' => $genres]);
     }
@@ -109,9 +105,9 @@ class EventController extends Controller
     {
         $event = Event::find($request->id);
 
-        $genre_id = $request['genre_id'];
+        $genre_ids = $request['genre_ids'];
         //紐づけ解除
-        $event->genres()->detach($genre_id);
+        $event->genres()->detach($genre_ids);
 
         $event->delete();
 
