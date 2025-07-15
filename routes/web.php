@@ -51,6 +51,12 @@ Route::controller(TopicController::class)->prefix('user')->name('user.')->middle
 
 });
 
+use App\Http\Controllers\EventController as PublicEventController;
+
+Route::get('/', [PublicEventController::class, 'event_home'])->name('event.event_home');
+Route::get('/event_index', [PublicEventController::class, 'event_index'])->name('event.event_index');
+Route::get('/event_details', [PublicEventController::class, 'event_details'])->name('event.event_details');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
