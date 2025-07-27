@@ -15,6 +15,7 @@ class TopicController extends Controller
         $genres = Genre::all();
         return view('user.topic.create', ['genres' => $genres]);
     }
+
     public function create(Request $request)
     {
         $this->validate($request, Topic::$rules);
@@ -108,5 +109,5 @@ class TopicController extends Controller
         return redirect('user/topic');
 
     }
-
+    
 }
