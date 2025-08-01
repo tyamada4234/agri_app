@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GenreContoller extends Controller
 {
@@ -24,9 +25,10 @@ class GenreContoller extends Controller
         unset($form['_token']);
 
         $genre->fill($form);
+        $genre->user_id=Auth::id();
         $genre->save();
 
-        return redirect('user/genre/create');
+        return redirect('user/genre');
     }
 
     public function index(Request $request)

@@ -11,18 +11,14 @@
                     <div class="date">
                         {{ '開催日時：' . $event->launch_date->format('Y年m月d日') }}
                      </div>
-                    <div>
-                        ジャンル：
-                        @foreach($genres as $genre)
-                        {{ $event->genres->contains('id', $genre->id) ? $genre->name : '' }}
-                        @endforeach
-                    </div>
+                    
                     <div>
                         ジャンル２：
                         @foreach($event->genres as $genre2)
                         {{ $genre2->name }}
                         @endforeach
                     </div>
+                    
                     <div class="body mt-3">
                         {{ 'イベント内容：' . Str::limit($event->body, 1500) }}
                     </div>

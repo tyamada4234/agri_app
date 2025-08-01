@@ -12,9 +12,7 @@ class EventController extends Controller
 {
     public function add()
     {
-        $genres = Genre::all();
-        
-        
+        $genres = Genre::all();  
         return view('user.event.create', ['genres' => $genres]);
     }
 
@@ -44,7 +42,6 @@ class EventController extends Controller
 
         return redirect('user/event');
 
-
     }
 
     public function index(Request $request) 
@@ -68,6 +65,7 @@ class EventController extends Controller
         $genres = Genre::all();
 
     return view('user.event.edit', ['event_form' => $event, 'genres' => $genres]);
+
     }
 
     public function update(Request $request)
@@ -76,7 +74,6 @@ class EventController extends Controller
         $event = Event::find($request->id);
 
         $event_form = $request->except(['genre_ids']);
-
 
         if ($request->remove == 'true') {
             $event_form['image_path'] = null;
@@ -104,9 +101,7 @@ class EventController extends Controller
     public function delete(Request $request)
     {
         $event = Event::find($request->id);
-
         $genre_ids = $request['genre_ids'];
-        //紐づけ解除
         $event->genres()->detach($genre_ids);
 
         $event->delete();
@@ -114,4 +109,5 @@ class EventController extends Controller
         return redirect('user/event');
 
     }
+    
 }

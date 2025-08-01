@@ -19,6 +19,9 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 
     </head>
 
@@ -77,7 +80,7 @@
                                             <a class="nav-link" href="/event_index">イベント一覧</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/event_topic">トピック一覧</a>
+                                            <a class="nav-link" href="/topic_index">トピック一覧</a>
                                         </li>
                                         <li>
                                         <div class="dropdown">
@@ -107,6 +110,7 @@
                 @yield('content')
             </main>
         </div>
+        
     </body>
 
 </html>

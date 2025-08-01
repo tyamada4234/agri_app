@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             //
-            $table->string('launch_date');
+            $table->date('launch_date')->nullable();
         });
     }
 

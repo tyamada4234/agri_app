@@ -26,8 +26,7 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="genre">ジャンル</label>
                         <div class="col-md-10" >
-                            <select name="genre_ids[]" class="form-control" multiple>
-                                
+                            <select name="genre_ids[]" class="form-control" multiple> 
                                 @foreach($genres as $genre)
                                 <option value="{{ $genre->id }}" {{ $event_form->genres->contains('id', $genre->id) ? 'selected' : '' }}>{{ $genre->name }}</option>
                                 @endforeach
@@ -37,7 +36,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">日時</label>
                         <div class="col-md-10">
-                            <input type="date" class="form-control" name="launch_date" value="{{ $event_form->launch_date }}">
+                            <input type="date" class="form-control" name="launch_date" value="{{ $event_form->launch_date->format('Y-m-d') }}">
                         </div>
                     </div>
                     <div class="form-group row">

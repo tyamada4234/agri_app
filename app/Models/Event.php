@@ -11,6 +11,10 @@ class Event extends Model
 
     protected $guarded = array('id');
 
+    protected $casts = array(
+        'launch_date' => 'datetime',
+    );
+
     public static $rules = array(
         'title' => 'required',
         'body' => 'required',

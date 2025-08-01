@@ -15,12 +15,7 @@
                                 @endforeach
                         </ul>
                     @endif
-                    <div class="form-group row">
-                        <label class="col-md-2">ユーザID</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="user_id" value="{{ auth()->id() }}">
-                        </div>
-                    </div>
+                    
                     <div class="form-group row">
                         <label class="col-md-2">ジャンル名</label>
                         <div class="col-md-10">

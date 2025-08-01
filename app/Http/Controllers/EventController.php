@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -15,17 +16,16 @@ class EventController extends Controller
     {
         $from = Carbon::today();
         $to= Carbon::today()->addMonths(1);
+        $one_month_ago = Carbon::today()->subMonth(1);
 
        $events = Event::whereBetween('launch_date', [$from, $to])->get();
 
-        if (count($events) > 0) {
-            $headline = $events->shift();
-        } else {
-            $headline = null;
-        }
+       $topics = Topic::whereBetween('created_at', [$one_month_ago, $from])->get();
+
+        
 
     
-        return view('event.event_home', ['headline' => $headline, 'events' => $events]);
+        return view('event.event_home', ['events' => $events, 'topics' => $topics]);
     }
 
     public function event_index(Request $request)
@@ -43,8 +43,6 @@ class EventController extends Controller
             abort(404);
         }
 
-        $genres = Genre::all();
-        
-    return view('event.event_details', ['event' => $event, 'genres' => $genres]);
+    return view('event.event_details', ['event' => $event]);
      }
 }

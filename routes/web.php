@@ -57,6 +57,10 @@ Route::get('/', [PublicEventController::class, 'event_home'])->name('event.event
 Route::get('/event_index', [PublicEventController::class, 'event_index'])->name('event.event_index');
 Route::get('/event_details', [PublicEventController::class, 'event_details'])->name('event.event_details');
 
+use App\Http\Controllers\TopicController as PublicTopicController;
+Route::get('/topic_index', [PublicTopicController::class, 'topic_index'])->name('topic.topic_index');
+Route::get('/topic_details', [PublicTopicController::class, 'topic_details'])->name('topic.topic_details');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
