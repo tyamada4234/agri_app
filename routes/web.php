@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 use App\Http\Controllers\User\EventController;
 
-Route::controller(EventController::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
+Route::controller(EventController::class)->prefix('user')->name('user.')->middleware('admin')->group(function () {
     Route::get('event/create', 'add')->name('event.add');
     Route::post('event/create', 'create')->name('event.create');
     Route::get('event', 'index')->name('event.index');
@@ -30,7 +30,7 @@ Route::controller(EventController::class)->prefix('user')->name('user.')->middle
 
 use App\Http\Controllers\User\GenreContoller;
 
-Route::controller(GenreContoller::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
+Route::controller(GenreContoller::class)->prefix('user')->name('user.')->middleware('admin')->group(function () {
     Route::get('genre/create', 'add')->name('genre.add');
     Route::post('genre/create', 'create')->name('genre.create');
     Route::get('genre', 'index')->name('genre.index');
@@ -41,7 +41,7 @@ Route::controller(GenreContoller::class)->prefix('user')->name('user.')->middlew
 
 use App\Http\Controllers\User\TopicController;
 
-Route::controller(TopicController::class)->prefix('user')->name('user.')->middleware('auth')->group(function () {
+Route::controller(TopicController::class)->prefix('user')->name('user.')->middleware('admin')->group(function () {
     Route::get('topic/create', 'add')->name('topic.add');
     Route::post('topic/create', 'create')->name('topic.create');
     Route::get('topic', 'index')->name('topic.index');
